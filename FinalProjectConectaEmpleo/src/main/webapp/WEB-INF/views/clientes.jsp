@@ -72,7 +72,7 @@
 	
     	</div>
 	<!-- Menu central con listado de clientes. -->
-    	<div class="col-sm-9">
+    	<div class="col-sm-9" id="">
     	 	<table class="table table-hover">
  	  			<thead>
  	  				<tr>
