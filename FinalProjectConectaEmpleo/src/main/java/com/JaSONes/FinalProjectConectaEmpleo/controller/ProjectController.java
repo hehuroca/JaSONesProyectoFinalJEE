@@ -47,9 +47,9 @@ public class ProjectController {
 		return new ModelAndView("index", "userLog", new Usuario());
 	}	
 	
-	@RequestMapping(value = "/clientes")
-	public ModelAndView clientPage() {
-		return new ModelAndView("clientes");
+	@RequestMapping(value = "/gestion")
+	public String gestionPage() {
+		return "gestion";
 	}
 	
 	@RequestMapping(value="/userLogged", method = RequestMethod.POST)
@@ -110,25 +110,33 @@ public class ProjectController {
 			webPass = "";			
 		}
 		
+		
 		HttpSession sesion = request.getSession();
 		PrintWriter out;
 		out = response.getWriter();
 		
-		// Si el usuario existe webUser será diferente de nulo
-		if (webUser != "" && webPass != "" && sesion.getAttribute("webUser") == null) {
-            //si coincide usuario y password y ademï¿½s no hay sesiï¿½n iniciada
-            sesion.setAttribute("webUser", webUser);
-    		out.print("userLogginOK");
-        } 
-		else{
-        	out.print("userLogginERR");
-        }
+		if (sesion.getAttribute("webUser") != null) {
+			//hay usuario loggeado
+			out.print("userLogginOK");
+		}
+		else {
+			if (webUser != "" && webPass != "") {
+				sesion.setAttribute("webUser", webUser);
+				out.print("userLogginOK");
+			}
+			else {
+				out.print("userLogginERR");
+			}	
+		}
 		
 	}
 	
 	@RequestMapping(value="/loginNewUser", method = RequestMethod.POST)
 	public void LoginnewUser(HttpServletRequest request, 
 						HttpServletResponse response) throws IOException {
+		
+		String webUser;
+		String webPass;
 		
 		// Recibimos la petición a través de AJAX
 		Gson gson = new Gson();
@@ -138,17 +146,47 @@ public class ProjectController {
 		Usuario userLogged = gson
 				.fromJson(userJSON, Usuario.class);
 		
+		// Pedimos al servicio que solicite listado de usuarios desde
+		// la base de datos
+		List<Usuario> usuarios = this.usuarioService.getUsuarios();
+		
+		// Filtramos la lista de usuarios devuelta al servicio
+		// para verificar si el usuario que se identifica existe
+		List<Usuario> userDB = usuarios.stream()
+				.filter(u -> u.getLogin().equals(userLogged.getLogin()) && 
+						u.getPasskey().equals(userLogged.getPasskey()))
+					.collect(Collectors.toList());
+		
+		Iterator<Usuario> itUserDB = userDB.iterator();
+		
+		if (itUserDB.hasNext()) {
+			Usuario usuarioOK = itUserDB.next();
+			webUser = usuarioOK.getLogin();
+			webPass = usuarioOK.getPasskey();
+		}
+		else {
+			webUser = "";
+			webPass = "";			
+		}
+		
 		HttpSession sesion = request.getSession();
 		PrintWriter out;
 		out = response.getWriter();
 		
-		int total = this.usuarioService.add(userLogged);
-		if (total>0) {
-			sesion.setAttribute("webUser", userLogged.getLogin());
-			out.print("userAltaOK");
-		}	
-		else
-			out.print("userAltaERR");
+		// Si el usuario existe webUser será diferente de nulo
+		if (webUser == "") {
+            //Podemos dar de alta el usuario si no se avisa
+			int total = this.usuarioService.add(userLogged);
+			if (total>0) {
+				sesion.setAttribute("webUser", userLogged.getLogin());
+				out.print("userAltaOK");
+			}	
+			else
+				out.print("userAltaERR");
+        } 
+		else{
+        	out.print("userAltaERR");
+        }
 		
 	}
 	

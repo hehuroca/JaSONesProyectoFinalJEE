@@ -11,7 +11,7 @@
 <!-- Design Responsive -->
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <!-- Estilos propios y de bootstrap 4.x	 -->
-	<link rel="stylesheet" href="<c:url value='/resources/project/css/index.css'/>" />
+	<link rel="stylesheet" href="<c:url value='/resources/project/css/gestion.css'/>" />
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 <!-- Scripts propios y de Frameworks -->
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
@@ -22,54 +22,41 @@
 <title>JaSONes - Gestión Peluquería</title>
 </head>
 <body>
-<div id="container" class="container fluid">
+	<div id="container" class="container fluid">
 		<div class="row" id="cabecera" >
 			<div class="col-sm-9"></div>
 			<div class="col-sm-3">
 				<img src="<c:url value='/resources/project/images/jaSONes_fondoGris.png'/>"
 				id="logo_cabecera">			
-			</div>
-			
+			</div>	
 		</div>
 		<div class="row" id="contenido">
 			<div class="col-sm-2" id="menu">
-				<nav >
-
-					<!-- Links -->
-					<ul class="nav flex-column" >
-					<br><br>
+				<nav class="nav flex-md-column">
+					<ul class="nav flex-md-column" >
 						<li class="nav-item">
-						<a class="list-group-item-action" href= "#" target="contenedorIFRAME">Inicio</a>
-						</li><br>
+							<a class="list-group-item-action" href= "#" target="contenedorIFRAME">Inicio</a>
+						</li>
 						<li class="nav-item">
-						<a class="list-group-item-action" href= "#" target="contenedorIFRAME">Usuarios</a>
-						</li><br>
+							<a class="list-group-item-action" href= "#" target="contenedorIFRAME">Usuarios</a>
+						</li>
 						<li class="nav-item">
-						<a class="list-group-item-action" href= "#" target="contenedorIFRAME">Clientes</a>
-						</li><br>
-						
+							<a class="list-group-item-action" href= "#" target="contenedorIFRAME">Clientes</a>
+						</li>
 						<li class="nav-item">
-						<a class="list-group-item-action" href= "#" target="contenedorIFRAME">Visitas</a>
-						</li><br>
+							<a class="list-group-item-action" href= "#" target="contenedorIFRAME">Visitas</a>
+						</li>
 						<li class="nav-item">
-						<a class="list-group-item-action" href= "#" target="contenedorIFRAME">Servicios</a>
-						</li><br>
-						
-						
-						
+							<a class="list-group-item-action" href= "#" target="contenedorIFRAME">Servicios</a>
+						</li>
 					</ul>
-
 				</nav>
 			</div>
 			<div class="col-sm-10" id="vistaGeneral">
 				<iframe class="embed-responsive-item" class="embed-responsive-item" id="cliente" name="clientes"
 					width="100%" height="100%" sandbox="allow-same-origin allow-scripts"></iframe>
 			</div>
-
-
 		</div>
-
 	</div>
-
 </body>
 </html>

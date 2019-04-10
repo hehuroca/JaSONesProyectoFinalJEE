@@ -64,16 +64,14 @@
  	  				</tr>
 				</thead>
 				<tbody>
-					<jsp:useBean id="c" class="com.JaSONes.FinalProjectConectaEmpleo.model.Cliente"></jsp:useBean>
-					<c:forEach items="${c.allClients}" var="d">
-						<c:set var="dni" value="${d.dni}"></c:set>
+<%-- 					<jsp:useBean id="c" class="com.JaSONes.FinalProjectConectaEmpleo.model.Cliente"></jsp:useBean> --%>
+					<c:forEach items="${allClients}" var="d">
+						<c:set var="nombre" value="${nombre} ${primerApellido} ${segundoApellido}"></c:set>
 						<tr>
-							<td><c:out value="${d.dni}"></c:out></td>
-							<td><c:out value="${d.nombre}"></c:out></td>
-							<td><c:out value="${d.primerApellido}"></c:out></td>
-							<td><c:out value="${d.segundoApellido}"></c:out></td>
-							<td><c:out value="${d.sexo}"></c:out></td>
-							<td><c:out value="${d.peluqueroFavorito}"></c:out></td>				
+							<td><c:out value="${dni}"></c:out></td>
+							<td><c:out value="${nombre}"></c:out></td>
+							<td><c:out value="${sexo}"></c:out></td>
+							<td><c:out value="${peluqueroFavorito}"></c:out></td>				
 						</tr>
 					</c:forEach>
 				</tbody>

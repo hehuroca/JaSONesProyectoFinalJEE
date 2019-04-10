@@ -6,7 +6,7 @@ import java.time.LocalTime;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
 
-public class Visita {
+public class Visita extends Servicio{
 	private int id;
 	@DateTimeFormat(iso=ISO.DATE, pattern= "yyyy/MM/dd")
 	private LocalDate fechaVisita;

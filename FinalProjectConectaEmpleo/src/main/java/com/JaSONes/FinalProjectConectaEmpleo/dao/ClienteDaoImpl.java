@@ -2,8 +2,6 @@ package com.JaSONes.FinalProjectConectaEmpleo.dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -80,8 +78,21 @@ public class ClienteDaoImpl implements ClienteDao {
 
 	@Override
 	public List<Cliente> getClientes() {
-		// TODO Auto-generated method stub
-		return null;
+	    String sql = "SELECT * FROM cliente ORDER BY nombre primerApellido";    
+	    List<Cliente> clientes = jdbcTemplate.query(sql, new RowMapper<Cliente>() {
+	        @Override
+	        public Cliente mapRow(ResultSet rs, int rowNum) throws SQLException {
+            	Cliente cliente = new Cliente();
+            	cliente.setNombre(rs.getString("nombre"));
+            	cliente.setDni(rs.getString("dni"));
+            	cliente.setPrimerApellido(rs.getString("primerApellido"));
+            	cliente.setPrimerApellido(rs.getString("segundoApellido"));
+            	cliente.setFechaNacimiento(rs.getDate("fechaNacimiento").toLocalDate());
+            	cliente.setSexo((rs.getString("sexo") == "MUJER")? Sexo.MUJER:Sexo.HOMBRE);
+                return cliente;
+	        }
+	    });
+		return clientes;
 	}
 
 	@Override
@@ -134,7 +145,7 @@ public class ClienteDaoImpl implements ClienteDao {
 	        	clienteVisitas.setHoraVisita(rs.getTime("horaVisita").toLocalTime());
 	        	clienteVisitas.setIdCliente(rs.getString("idCliente"));
 	        	clienteVisitas.setIdServicio(rs.getInt("idServicio"));
-	        	clienteVisitas.setIdUsuario(rs.getInt("idUsuario"));	            
+	        	clienteVisitas.setIdUsuario(rs.getInt("idUsuario"));
 	            return clienteVisitas;
 	        }	 
 	    });
