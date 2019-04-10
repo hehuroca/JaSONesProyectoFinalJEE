@@ -1,0 +1,144 @@
+@charset "UTF-8";
+
+body {
+  padding-top: 60px;
+  padding-right: 0px;
+  padding-left: 0px;
+  background: #f8f2fd;
+}
+
+/* Make the image fully responsive */
+.carousel-inner img {
+     width: 100%;
+     height: 300px
+ }
+ 
+#mainContainer {
+    margin-left: 0px;
+    padding-left: 0px;
+    padding-right: 0px
+}    
+
+#frmReservarVuelo {
+    padding-left: 4px;
+    padding-bottom: 8px
+}
+
+#vuelosProgramados {
+	margin-top: 3px;
+    margin-bottom: 3px;
+    margin-left: 0px;
+    margin-right: 0px;
+    display: flex;
+    clear: both;
+    width: 100%
+}
+
+#lblListaVuelos {
+	float: left;
+	margin-bottom: 6px;
+	font-size: x-large;
+    /* font-style: italic; */
+    font-family: sans-serif
+}
+
+#listaVuelos {
+	float: left;
+	margin-top: 6px;
+    margin-left: 15px
+}
+
+#tituloPrincipal, #tituloFrmReservas { 
+	padding-left: 0px;
+	padding-right: 0px;
+	clear: both;
+	width: 100%;
+	background-color:lightblue;
+	color: green;
+	display: flex;
+   	justify-content: center;
+   	align-items: center
+}
+
+#tituloDatosVuelo {
+	padding-left: 0px;
+	padding-right: 0px;
+	clear: both;
+	width: 100%;
+	background-color:lightblue;
+	color: green;
+	display: none;
+   	justify-content: center;
+   	align-items: center
+}
+
+#listaPasajeros {
+	padding-left: 0px;
+	padding-right: 0px;
+	width: 100%
+}
+
+#btnSubmit {
+	padding-left: 0px;
+	padding-right: 0px;
+	margin-top: 8px;
+	width: 100%
+}
+
+#lblInputName, #lblInputFirstLastName, 
+#lblInputSecondLastName, #lblInputEmail, #lblInputTelefonos {
+	border-top: 1px;
+	border-left: 1px;
+	padding-top: 6px;
+	padding-left: 12px
+}
+
+#nameWrong, #firstLastNameWrong, #secondLastNameWrong, #emailWrong,
+#telefonosWrong {
+	display: none;
+	color: red;
+	font: 11px arial, sans-serif;
+	background-color: #f3f8d3
+}
+
+#expregName, #expregFirstLastName, #expregSecondLastName, #expregEmail,
+#expregTelefonos {
+	font: 11px arial, sans-serif;
+	margin-bottom: 3px
+}
+
+#idBookingValidationButton {
+	float: right;
+	background: #efefef
+}
+
+#grpdatosIdentidad0 {
+	padding-top: 8px;
+	padding-bottom: 8px;
+	width: 100%;
+	background: #f8f2fd
+}
+
+#grpdatosIdentidad1 {
+	padding-bottom: 8px;
+	width: 100%;
+	background: #f8f2fd
+}
+
+#grpName, #grpFirstLastName, #grpSecondLastName {
+	float: left;
+	width: 100%
+}
+
+#grpTelefonos, #grpEmail {
+	float: left;
+	width: 100%
+}
+
+/* Los campos del formulario */
+
+#name, #firstlastName, #secondlastName, #email, #telefonos {
+	margin-bottom: 3px;
+	background-color: #ffe6cc
+}
+

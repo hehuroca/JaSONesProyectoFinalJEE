@@ -1,2 +1,2 @@
 # JaSONesProyectoFinalJEE
-Proyecto final para el curso JavaEE Web Developer - Conecta Empleo - FundaciÃ³n TelefÃ³nica
+Proyecto final para el curso JavaEE Web Developer - Conecta Empleo - Fundación Telefónica

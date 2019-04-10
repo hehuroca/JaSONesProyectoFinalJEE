@@ -1,0 +1,69 @@
+@charset "UTF-8";
+body {
+  padding-top: 50px;
+  line-height: 1;
+}
+
+/* Make the image fully responsive */
+.carousel-inner img {
+     width: 100%;
+     height: 300px;
+ }
+ 
+#usrIncorrecto {
+	display: none;
+	color: red;
+	background-color: #f3f8d3 
+}
+
+#usuario {
+	clear: both;
+	margin-bottom: 3px;
+	background-color: #f0ebfa
+}
+
+#passwd {
+	clear: both;
+	margin-bottom: 3px;
+	background-color: #f0ebfa
+}
+
+#lblinputPWD, #lblinputUSR {
+	border-top: 1px;
+	border-left: 1px;
+	padding-top: 6px;
+	padding-left: 12px
+}
+
+#modalHeader, #modalFooter {
+	background-color: #fcefe4
+}
+
+#menuBtns {
+	background-color: #fcefe4
+} 
+
+#vuelosPasajeros {
+	background-color: #fcfdf2
+}
+
+#btnReservar {
+	margin-left: 20px;
+	padding-left: 12px
+}
+
+#btnl {
+	margin-top: 10px;
+	margin-left: 20px;
+	padding-left: 12px
+}
+
+#btnC {
+	margin-top: 0px;
+	margin-left: 15px;
+	padding-left: 3px
+}
+
+#titulo1 {
+	margin-left: 10px
+}

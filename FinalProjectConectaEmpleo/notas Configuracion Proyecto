@@ -1,0 +1,147 @@
+1) Creamos un nuevo archetype en la ventana de creación de un
+proyecto Maven:
+
+https://jar-download.com/artifacts/fr.uha.ensisa.ff/spring-mvc-archetype/1.0.4/source-code
+
+Artifact spring-mvc-archetype
+Group fr.uha.ensisa.ff
+Version 1.0.4
+Last update 22. February 2018
+Newest version No
+Tags: extremely with configured simple spring 
+Organization not specified
+URL https://github.com/fondemen/spring-mvc-archetype 
+License The Apache Software License, Version 2.0
+Dependencies amount 0
+Dependencies No dependencies
+There are maybe transitive dependencies!
+
+Ya existe la versión 1.0.6
+
+2) Creamos el proyecto y a continuación en el fichero POM.XML
+cambiamos la dependencia que viene por defecto bajo el comentario
+<!-- Servlet Spec --> para el group javax.select con el 
+spring-mvc-archtype 1.0.4 a esta otra:
+
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>3.1.0</version>
+			<scope>provided</scope>
+		</dependency>
+		
+3) corregimos los warning 
+
+The type WebMvcConfigurerAdapter is deprecated
+
+modificando la clase para que quede as�: 
+
+MvcConfiguration.java:
+
+package com.JaSONes.FinalProjectConectaEmpleo.config;
+
+import org.springframework.context.MessageSource;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.support.ResourceBundleMessageSource;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
+@Configuration
+@ComponentScan(basePackages="com.JaSONes")
+@EnableWebMvc
+public class MvcConfiguration implements WebMvcConfigurer{
+
+	//Agregamos desde Source --> Override/Implements Methods
+	// el método configureViewResolvers
+	@Override
+	public void configureViewResolvers(ViewResolverRegistry registry) {
+		// TODO Auto-generated method stub
+		WebMvcConfigurer.super.configureViewResolvers(registry);
+		registry.jsp().prefix("WEB-INF/views/");
+		registry.jsp().suffix("jsp");
+		
+	}
+	
+	@Bean
+	public MessageSource messageSource() {
+		ResourceBundleMessageSource source = new ResourceBundleMessageSource();
+		source.setBasename("messages");
+		return source;
+	}
+}
+
+4) Eliminamos el archivo "descriptor deployment" web.xml y lo reemplazamos
+por una clase que notifique que se ha creado un contexto
+
+InitializerConfig.java:
+
+com.JaSONes.FinalProjectConectaEmpleo.config;
+
+import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
+import javax.servlet.ServletRegistration;
+
+import org.springframework.web.WebApplicationInitializer;
+import org.springframework.web.context.ContextLoaderListener;
+import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
+import org.springframework.web.servlet.DispatcherServlet;
+
+public class InitializerConfig implements WebApplicationInitializer{
+
+	@Override
+	public void onStartup(ServletContext container) throws ServletException {
+		// TODO Auto-generated method stub
+		
+		// Creamos el contexto
+		AnnotationConfigWebApplicationContext context;
+		context = new AnnotationConfigWebApplicationContext();
+		// Le indicamos donde debe buscar los bean
+		context.setConfigLocation("com.JaSONes.FinalProjectConectaEmpleo");
+		// Lo ponemos a escuchar
+		container.addListener(new ContextLoaderListener(context));
+		// Informamos como se llama el Dispatcher Servlet
+		ServletRegistration.Dynamic dispatcher = 
+				container.addServlet("dispatcher", new DispatcherServlet(context));
+		// Ahora lo cargamos de inicio
+		dispatcher.setLoadOnStartup(1);
+		// Le indicamos que cargue todo aquéllo que acabe en /
+		// en vez de poner *.html
+		dispatcher.addMapping("/");
+		
+	}
+
+}
+
+5) Para que MAVEN no se queje si no existe el fichero web.xml
+añadimos en el POM.XML:
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>2.6</version>
+				<configuration>
+					<failOnMissingWebXml>false</failOnMissingWebXml>
+				</configuration>
+			</plugin>
+
+6) Para acceso a bases de datos via JDBC a�adir la siguiente dependdencia
+
+<!-- https://mvnrepository.com/artifact/org.springframework/spring-jdbc -->
+<dependency>
+    <groupId>org.springframework</groupId>
+    <artifactId>spring-jdbc</artifactId>
+    <version>5.1.6.RELEASE</version>
+</dependency>
+
+7) Agregamos tambi�n para bases de datos MySQL la siguiente dependencia:
+
+<!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
+<dependency>
+    <groupId>mysql</groupId>
+    <artifactId>mysql-connector-java</artifactId>
+    <version>8.0.15</version>
+</dependency>
+
