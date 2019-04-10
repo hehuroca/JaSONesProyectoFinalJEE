@@ -17,13 +17,13 @@ public class UsuarioServiceImpl implements UsuarioService{
 	private UsuarioDao usuarioDao;
 
 	@Override
-	public int addORupdate(Usuario usuario) {
-		return this.usuarioDao.addORupdate(usuario);
+	public int add(Usuario usuario) {
+		return this.usuarioDao.add(usuario);
 	}
 
 	@Override
-	public void edit(int id) {
-		this.usuarioDao.edit(id);
+	public void edit(Usuario usuario) {
+		this.usuarioDao.edit(usuario);
 	}
 
 	@Override

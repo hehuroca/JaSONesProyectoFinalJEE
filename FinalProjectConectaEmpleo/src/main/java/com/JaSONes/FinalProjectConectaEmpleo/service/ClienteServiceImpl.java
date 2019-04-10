@@ -18,13 +18,13 @@ public class ClienteServiceImpl implements ClienteService{
 	private ClienteDao clienteDao;
 	
 	@Override
-	public int addORupdate(Cliente cliente) {
-		return this.clienteDao.addORupdate(cliente);
+	public int add(Cliente cliente) {
+		return this.clienteDao.add(cliente);
 	}
 
 	@Override
-	public void edit(String dni) {
-		this.clienteDao.edit(dni);
+	public void edit(Cliente cliente) {
+		this.clienteDao.edit(cliente);
 	}
 
 	@Override
