@@ -18,13 +18,13 @@ public class ServicioServiceImpl implements ServicioService {
 	private ServicioDao servicioDao;
 
 	@Override
-	public int addORupdate(Servicio servicio) {
-		return this.servicioDao.addORupdate(servicio);
+	public int add(Servicio servicio) {
+		return this.servicioDao.add(servicio);
 	}
 
 	@Override
-	public void edit(int id) {
-		this.servicioDao.edit(id);
+	public void edit(Servicio servicio) {
+		this.servicioDao.edit(servicio);
 	}
 
 	@Override

@@ -6,7 +6,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
 
 
-public class Cliente {
+public class Cliente extends Visita {
 
 	public enum Sexo{
 		HOMBRE, MUJER

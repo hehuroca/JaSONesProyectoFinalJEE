@@ -7,8 +7,8 @@ import com.JaSONes.FinalProjectConectaEmpleo.model.Servicio;
 
 public interface ServicioService {
 	
-	public int addORupdate(Servicio servicio);
-	public void edit(int id);
+	public int add(Servicio servicio);
+	public void edit(Servicio servicio);
 	public void delete(int id);
 	public List<Servicio> getServicios();
 	public Servicio getServicio(int id);

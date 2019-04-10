@@ -142,7 +142,7 @@ public class ProjectController {
 		PrintWriter out;
 		out = response.getWriter();
 		
-		int total = this.usuarioService.addORupdate(userLogged);
+		int total = this.usuarioService.add(userLogged);
 		if (total>0) {
 			sesion.setAttribute("webUser", userLogged.getLogin());
 			out.print("userAltaOK");

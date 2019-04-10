@@ -7,8 +7,8 @@ import com.JaSONes.FinalProjectConectaEmpleo.model.Cliente;
 
 public interface ClienteService {
 
-	public int addORupdate(Cliente cliente);
-	public void edit(String dni);
+	public int add(Cliente cliente);
+	public void edit(Cliente cliente);
 	public void delete(String dni);
 	public List<Cliente> getClientes();
 	public Cliente getCliente(String dni);

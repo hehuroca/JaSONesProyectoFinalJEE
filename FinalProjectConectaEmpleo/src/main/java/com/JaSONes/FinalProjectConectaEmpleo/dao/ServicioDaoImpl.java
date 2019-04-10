@@ -28,13 +28,13 @@ public class ServicioDaoImpl implements ServicioDao{
 	}
 
 	@Override
-	public int addORupdate(Servicio servicio) {
+	public int add(Servicio servicio) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-	public void edit(int id) {
+	public void edit(Servicio servicio) {
 		// TODO Auto-generated method stub
 		
 	}

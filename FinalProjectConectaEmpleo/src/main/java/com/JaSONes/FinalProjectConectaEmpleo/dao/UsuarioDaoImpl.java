@@ -36,39 +36,34 @@ public class UsuarioDaoImpl implements UsuarioDao {
 	}
 
 	@Override
-	public int addORupdate(Usuario usuario) {
+	public int add(Usuario usuario) {
 		int totalRegistros = 0;
 		
-	    if (usuario.getId() > 0) {
-	        // update
-	        String sql = "UPDATE `basedatospeluqueria`.`usuario` " + 
-	        		"SET `login` = ?, `passkey` = ? " + 
-	        		"WHERE (`id` = ?)";
-	        jdbcTemplate.update(sql, 
-	        		usuario.getLogin(), 
-	        		usuario.getPasskey(),
-	        		usuario.getId());
-	        totalRegistros = 1;
-	    } else {
-	        // insert
-	        // Mapeamos las columnas de la tabla pasajeros
-			// los nombres usados entre las "" han de ser idénticos
-			// a los de los campos de la tabla
-            Map<String, Object> parameters = new HashMap<String, Object>(6);
-            parameters.put("login", usuario.getLogin());
-            parameters.put("passkey", usuario.getPasskey());
-            // Aquí capturamos el Id Generado
-            Number newId = tblUsuario.executeAndReturnKey(parameters);
-            totalRegistros = newId.intValue();
-            usuario.setId(newId.intValue());
-	    }   
+        // insert
+        // Mapeamos las columnas de la tabla de usuarios
+		// los nombres usados entre las "" han de ser idénticos
+		// a los de los campos de la tabla
+        Map<String, Object> parameters = new HashMap<String, Object>(6);
+        parameters.put("login", usuario.getLogin());
+        parameters.put("passkey", usuario.getPasskey());
+        // Aquí capturamos el Id Generado
+        Number newId = tblUsuario.executeAndReturnKey(parameters);
+        totalRegistros = newId.intValue();
+        usuario.setId(newId.intValue());   
             
         return totalRegistros;
 	}
 
 	@Override
-	public void edit(int id) {
-		
+	public void edit(Usuario usuario) {
+        // update
+        String sql = "UPDATE `basedatospeluqueria`.`usuario` " + 
+        		"SET `login` = ?, `passkey` = ? " + 
+        		"WHERE (`id` = ?)";
+        jdbcTemplate.update(sql, 
+        		usuario.getLogin(), 
+        		usuario.getPasskey(),
+        		usuario.getId());
 	}
 
 	@Override
