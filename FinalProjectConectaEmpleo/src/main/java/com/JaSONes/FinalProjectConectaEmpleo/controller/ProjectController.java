@@ -47,6 +47,11 @@ public class ProjectController {
 		return new ModelAndView("index", "userLog", new Usuario());
 	}	
 	
+	@RequestMapping(value = "/clientes")
+	public ModelAndView clientPage() {
+		return new ModelAndView("clientes");
+	}
+	
 	@RequestMapping(value="/userLogged", method = RequestMethod.POST)
 	public void userLogged(HttpServletRequest request, 
 					HttpServletResponse response) throws ServletException, IOException {
