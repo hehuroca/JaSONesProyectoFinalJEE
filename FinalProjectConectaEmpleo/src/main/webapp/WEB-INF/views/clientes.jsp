@@ -19,28 +19,6 @@
 	<script src="<c:url value='/resources/project/js/comunes.js' />"></script>
 	<script src="<c:url value='/resources/project/js/reservarVuelo.js' />"></script>
 	<script src="<c:url value='/resources/project/js/index.js' />"></script>
-	<style>
-		/* Make the image fully responsive */
-		.carousel-inner img {
-		width: 100%;
-		height: 300px;
-		}
-		/* Para quitar el scroll */
-		iframe {
-			overflow: auto;
-			border: none;
-		}
-	</style>
-	<style>
-			#infoNombreIncorrecto, #infoPrimerApellidoIncorrecto, #infoSegundoApellidoIncorrecto,
-			#infoTlfIncorrecto, #infoEmailIncorrecto, #infoFechAltaIncorrecto, #infoFechSalidaIncorrecto {
-				display: none;
-				color: red;
-				/* visibility: hidden; */
-			}
-	</style>	
-	
-
 	<title>Clientes</title>
 </head>
 <body>
@@ -73,6 +51,7 @@
     	</div>
 	<!-- Menu central con listado de clientes. -->
     	<div class="col-sm-9" id="">
+    		<h4 align="center">Listado de clientes</h4>
     	 	<table class="table table-hover">
  	  			<thead>
  	  				<tr>
@@ -81,7 +60,7 @@
 	 	   				<th scope="col">Primer Apellido</th>
 	 	   				<th scope="col">Segundo Apellido</th>
 	 	   				<th scope="col">Sexo</th>
-	 	   				<th scope="col">Peluquero Favorito</th>
+	 	   				<th scope="col">Fecha de Nacimiento</th>
  	  				</tr>
 				</thead>
 				<tbody>
@@ -107,52 +86,103 @@
 		<h3>Formulario de registro de un cliente</h3>
 		<form action="#" method="get" id="formRegistro">
 <!-- dni -->
-			<div class="form-group">
-				<label for="dni">Dni:</label>
-				<input class="form-control" type="text" id="dni" required name="dni" placeholder="Dni del cliente">
-				<span id="dniErroneo">El dni no es correcto.</span>			
+		<div id="grupoDni">
+			<div class="form-group" id="dni">
+				<label id="lblInputDni" for="dni">Dni:</label>
+				<input class="form-control" type="text" id="dni" required name="dni" placeholder="Dni del cliente">		
 			</div>
+			<div  class="form-group" id="expreDni">
+				<span>El dni tiene que llevar ocho números y una letra</span>
+			</div>
+				<div  class="form-group" id="dniErroneo">
+					<span>El dni NO cumple el requisito</span>
+				</div>
+		</div>
 <!--NOMBRE -->
-			<div class="form-group">
-				<label for="nombre">Nombre:</label>
-				<input class="form-control" type="text" id="nombre" required name="nombre" placeholder="Nombre del cliente.">
-				<span id="infoNombreIncorrecto">Nombre inválido</span>
-					</div>		
+		<div id="grupoName">
+			<div class="form-group" id="nombre">
+				<label id="lblInputNombre" for="nombre">Nombre:</label>
+				<input class="form-control" type="text" id="nombre" required
+					 name="nombre" placeholder="Nombre del cliente.">
+			</div>	
+			 	<div  class="form-group" id="expreNombre">
+					<span>La Primera letra ha ser Mayúscula</span>
+				</div>
+				<div  class="form-group" id="nombreErroneo">
+					<span>El Nombre NO cumple el requisito</span>
+				</div>				
+		</div>	
 <!--PRIMER APELLIDO -->
-			<div class="form-group">
-				<label for="primerApellido">Primer Apellido: </label>
-				<input class="form-control" type="text" id="primerApellido" required name="primerApellido" placeholder="Primer Apellido">
-				<span id="infoPrimerApellidoIncorrecto">Apellido inválido</span>
+		<div id="grpPrimerApellido">
+			<div class="form-group" id= "primerApellido">
+				<label id="lblInputPrimerApellido" for="primerApellido">Primer Apellido: </label>
+				<input class="form-control" type="text" id="primerApellido" required
+					 name="primerApellido" placeholder="Primer Apellido">
+			</div>	
+			<div  class="form-group" id="exprePrimerApellido">
+				<span>La Primera letra ha ser Mayúscula</span>
 			</div>
+			<div class="form-group" id="primerApellidoErroneo">
+				<span>El 1er Apellido NO cumple el requisito</span>
+			</div>				
+		</div>
 <!--SEGUNDO APELLIDO -->
-			<div class="form-group">
-				<label for="segundoApellido">Segundo Apellido: </label> 
-				<input class="form-control" type="text" id="segundoApellido" required name="segundoApellido" placeholder="Segundo Apellido">
-				<span id="infoSegundoApellidoIncorrecto">Apellido inválido</span>
-			</div>		
+		<div id="grpSegundoApellido">
+			<div class="form-group" id="segundoApellido">
+				<label id="lblInputSegundoApellido" for="segundoApellido">Segundo Apellido: </label> 
+				<input class="form-control" type="text" id="segundoApellido" required 
+					name="segundoApellido" placeholder="Segundo Apellido">
+			</div>				
+				<div  class="form-group" id="expreSegundoApellido">
+					<span>La Primera letra ha ser Mayúscula</span>
+				</div>
+				<div class="form-group" id="segundoApellidoErroneo">
+					<span>El 2do Apellido NO cumple el requisito</span>
+				</div>
+		</div>	
 <!--SEXO -->
-			<div class="row">
-				<div class="col">
+		<div id="grpSexo">
+			<div class="row" id="sexo">
+				<div class="form-check form-check-inline">
 					<label class="form-check form-check-inline" for="hombre">Hombre: </label> 
-					<input class="form-check" type="radio" name="sexo" required id="sexo" value="H"> 
+					<input class="form-check-input" type="radio" name="sexo" required
+						 id="sexo" value="H"> 
 				</div>
-				<div class="col">
+				<div class="form-check form-check-inline">
 					<label class="form-check form-check-inline" for="mujer">Mujer: </label> 
-					<input class="form-check" type="radio" name="sexo" required id="sexo" value="M">
+					<input class="form-check" type="radio" name="sexo" required 
+						id="sexo" value="M">
 				</div>
-			</div>		
+			</div>	
+		</div>	
 <!--TELÉFONO -->
-			<div class="form-group">
-				<label for="tlfContacto">Teléfono de contacto</label> 
-				<input class="form-control" type="text" id="tlfContacto" required name="tlfContacto" placeholder="Introduzca el teléfono">
-				<span id="infoTlfIncorrecto">Teléfono inválido</span>
+		<div id="grpTelefonos">
+			<div class="form-group" id="telefonos">
+				<label for="lblInputTlfContacto">Teléfono de contacto: </label> 
+				<input class="form-control" type="text" id="tlfContacto" required 
+					name="tlfContacto" placeholder="Introduzca el teléfono">
 			</div>
+			<div  class="form-group" id="expregTelefonos">
+				<span>Ej: 934874524, 697897824 (Separador: ", ")</span>
+			</div>
+			<div class="form-group" id="telefonoErroneo">
+				<span>Compruebe: 9 dígitos, "," y espacios</span>
+			</div>			
+		</div>
 <!--EMAIL -->
+		<div id="grpEmail">
 			<div class="form-group">
-				<label for="email">Correo Eléctronico</label> 
-				<input class="form-control" type="text" id="email" required name="email" class="form-control" placeholder="name@example.com"> 
-				<span id="infoEmailIncorrecto">Cuenta inválida</span>
+				<label id="lblInputEmail" for="email">Correo Eléctronico</label> 
+				<input class="form-control" type="text" id="email" required 
+					name="email" placeholder="name@example.com"> 
 			</div>
+			<div  class="form-group" id="expregEmail">
+				<span>Ej: usuario@gmail.com</span>
+			</div>
+			<div class="form-group" id="emailErroneo">
+				<span>El correo NO cumple el requisito</span>
+			</div>
+		</div>
 <!-- BOTÓN REGISTRO DEL CLIENTE-->
 				<button type="submit" class="btn btn-primary">Registrar cliente</button>						  
 		</form>
