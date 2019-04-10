@@ -37,7 +37,7 @@
   </div>  
 </nav>
 
-	<div class="container-fluid">
+	<div class="container-fluid" id="mainContainer">
 	
 	<!-- Menú lateral izquierdo de navegación.  -->
 	  <div class="row">
@@ -50,9 +50,9 @@
 	
     	</div>
 	<!-- Menu central con listado de clientes. -->
-    	<div class="col-sm-9" id="">
+    	<div class="col-sm-9" id="listadoClientes">
     		<h4 align="center">Listado de clientes</h4>
-    	 	<table class="table table-hover">
+    	 	<table class="table">
  	  			<thead>
  	  				<tr>
 	 	    			<th scope="col">DNI</th> 
@@ -73,7 +73,7 @@
 							<td><c:out value="${d.primerApellido}"></c:out></td>
 							<td><c:out value="${d.segundoApellido}"></c:out></td>
 							<td><c:out value="${d.sexo}"></c:out></td>
-							<td><c:out value="${d.peluqueroFavorito}"></c:out></td>				
+							<td><c:out value="${d.fechadeNacimiento}"></c:out></td>				
 						</tr>
 					</c:forEach>
 				</tbody>
@@ -184,9 +184,12 @@
 			</div>
 		</div>
 <!-- BOTÓN REGISTRO DEL CLIENTE-->
-				<button type="submit" class="btn btn-primary">Registrar cliente</button>						  
-		</form>
-	 </div>
+		<div id="registarCliente">
+			<input id ="botonRegistrarCliente"type="submit" class="btn btn-success" 
+				type="button" value="Registrar cliente">
+		</div>						  
+	</form>
+</div>
 	
 	</div>
 </body>
