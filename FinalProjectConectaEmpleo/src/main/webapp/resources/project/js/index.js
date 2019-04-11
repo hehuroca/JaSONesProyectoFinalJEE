@@ -102,6 +102,7 @@ function loginButtonCLICKEvent() {
 		xhttp.send("userJSON="+stringJSONUser);
 
 	}
+	
 };
 
 function newUserButtonCLICKEvent () {

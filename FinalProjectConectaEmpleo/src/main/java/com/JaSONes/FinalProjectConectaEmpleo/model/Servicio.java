@@ -2,7 +2,7 @@ package com.JaSONes.FinalProjectConectaEmpleo.model;
 
 public class Servicio {
 
-	private int id;
+	private int idServicio;
 	private String nombreServicio;
 	private Double precioServicio;
 	private Double tiempoMedioServicio;
@@ -12,12 +12,12 @@ public class Servicio {
 		super();
 	}
 
-	public int getId() {
-		return id;
+	public int getIdServicio() {
+		return idServicio;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setIdServicio(int idServicio) {
+		this.idServicio = idServicio;
 	}
 
 	public String getNombreServicio() {

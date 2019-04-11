@@ -28,8 +28,8 @@ public class ServicioServiceImpl implements ServicioService {
 	}
 
 	@Override
-	public void delete(int id) {
-		this.servicioDao.delete(id);
+	public void delete(int idServicio) {
+		this.servicioDao.delete(idServicio);
 	}
 
 	@Override
@@ -38,8 +38,8 @@ public class ServicioServiceImpl implements ServicioService {
 	}
 
 	@Override
-	public Servicio getServicio(int id) {
-		return this.servicioDao.getServicio(id);
+	public Servicio getServicio(int idServicio) {
+		return this.servicioDao.getServicio(idServicio);
 	}
 
 	@Override

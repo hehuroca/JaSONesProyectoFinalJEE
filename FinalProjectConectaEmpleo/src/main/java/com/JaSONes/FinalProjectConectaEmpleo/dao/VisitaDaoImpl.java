@@ -10,55 +10,54 @@ import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
-import com.JaSONes.FinalProjectConectaEmpleo.model.Servicio;
+import com.JaSONes.FinalProjectConectaEmpleo.model.Visita;
 
-@Component("servicioDaoImplC")
+@Component("visitaDaoImplC")
 @Repository
-public class ServicioDaoImpl implements ServicioDao{
-	
-    private SimpleJdbcInsert tblServicio;
+public class VisitaDaoImpl implements VisitaDao {
+    private SimpleJdbcInsert tblVisita;
 	private JdbcTemplate jdbcTemplate;
 
-	public ServicioDaoImpl(DataSource dataSource) {
+	public VisitaDaoImpl(DataSource dataSource) {
 	    this.jdbcTemplate = new JdbcTemplate(dataSource);
-	    this.tblServicio = 
+	    this.tblVisita = 
                 new SimpleJdbcInsert(dataSource)
-                	.withTableName("servicio")
-                	.usingGeneratedKeyColumns("id");
+                	.withTableName("visita")
+                	.usingGeneratedKeyColumns("id");;
 	}
 
 	@Override
-	public int add(Servicio servicio) {
+	public int add(Visita visita) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-	public void edit(Servicio servicio) {
+	public void edit(Visita visita) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void delete(int idServicio) {
+	public void delete(int idVisita) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public List<Servicio> getServicios() {
+	public List<Visita> getVisitas() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Servicio getServicio(int idServicio) {
+	public Visita getVisita(int idVisita) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Map<String, List<Servicio>> getServiciosPorPeluquero() {
+	public Map<String, List<Visita>> getVisitasPorCliente() {
 		// TODO Auto-generated method stub
 		return null;
 	}

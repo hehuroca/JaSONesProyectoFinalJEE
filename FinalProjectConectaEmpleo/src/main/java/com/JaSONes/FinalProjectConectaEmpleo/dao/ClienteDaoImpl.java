@@ -48,6 +48,8 @@ public class ClienteDaoImpl implements ClienteDao {
         parameters.put("segundoApellido", cliente.getSegundoApellido());
         parameters.put("fechaNacimiento", cliente.getFechaNacimiento());
         parameters.put("sexo", cliente.getSexo());
+        parameters.put("telefono", cliente.getTelefono());
+        parameters.put("mail", cliente.getMail());
         // Aquí capturamos el Id Generado
         totalRegistros = tblCliente.execute(parameters);
             
@@ -78,7 +80,7 @@ public class ClienteDaoImpl implements ClienteDao {
 
 	@Override
 	public List<Cliente> getClientes() {
-	    String sql = "SELECT * FROM cliente ORDER BY nombre primerApellido";    
+	    String sql = "SELECT * FROM cliente ORDER BY primerApellido ASC";    
 	    List<Cliente> clientes = jdbcTemplate.query(sql, new RowMapper<Cliente>() {
 	        @Override
 	        public Cliente mapRow(ResultSet rs, int rowNum) throws SQLException {
@@ -86,9 +88,11 @@ public class ClienteDaoImpl implements ClienteDao {
             	cliente.setNombre(rs.getString("nombre"));
             	cliente.setDni(rs.getString("dni"));
             	cliente.setPrimerApellido(rs.getString("primerApellido"));
-            	cliente.setPrimerApellido(rs.getString("segundoApellido"));
+            	cliente.setSegundoApellido(rs.getString("segundoApellido"));
             	cliente.setFechaNacimiento(rs.getDate("fechaNacimiento").toLocalDate());
             	cliente.setSexo((rs.getString("sexo") == "MUJER")? Sexo.MUJER:Sexo.HOMBRE);
+            	cliente.setTelefono(rs.getString("telefono"));
+            	cliente.setMail(rs.getString("mail"));
                 return cliente;
 	        }
 	    });
@@ -97,7 +101,7 @@ public class ClienteDaoImpl implements ClienteDao {
 
 	@Override
 	public Cliente getCliente(String dni) {
-	    String sql = "SELECT * FROM cliente WHERE dni=" + dni;
+	    String sql = "SELECT * FROM cliente WHERE dni='" + dni + "'";
 	    return jdbcTemplate.query(sql, new ResultSetExtractor<Cliente>() {
 	        @Override
 	        public Cliente extractData(ResultSet rs) throws SQLException,
@@ -107,9 +111,11 @@ public class ClienteDaoImpl implements ClienteDao {
 	            	cliente.setNombre(rs.getString("nombre"));
 	            	cliente.setDni(rs.getString("dni"));
 	            	cliente.setPrimerApellido(rs.getString("primerApellido"));
-	            	cliente.setPrimerApellido(rs.getString("segundoApellido"));
+	            	cliente.setSegundoApellido(rs.getString("segundoApellido"));
 	            	cliente.setFechaNacimiento(rs.getDate("fechaNacimiento").toLocalDate());
 	            	cliente.setSexo((rs.getString("sexo") == "MUJER")? Sexo.MUJER:Sexo.HOMBRE);
+	            	cliente.setTelefono(rs.getString("telefono"));
+	            	cliente.setMail(rs.getString("mail"));
 	                return cliente;
 	            }            
 	            return null;
@@ -136,15 +142,17 @@ public class ClienteDaoImpl implements ClienteDao {
 	        	clienteVisitas.setNombre(rs.getString("nombre"));
 	        	clienteVisitas.setDni(rs.getString("dni"));
 	        	clienteVisitas.setPrimerApellido(rs.getString("primerApellido"));
-	        	clienteVisitas.setPrimerApellido(rs.getString("segundoApellido"));
+	        	clienteVisitas.setSegundoApellido(rs.getString("segundoApellido"));
 	        	clienteVisitas.setFechaNacimiento(rs.getDate("fechaNacimiento").toLocalDate());
 	        	clienteVisitas.setSexo((rs.getString("sexo") == "MUJER")? Sexo.MUJER:Sexo.HOMBRE);
+	        	clienteVisitas.setTelefono(rs.getString("telefono"));
+	        	clienteVisitas.setMail(rs.getString("mail"));
 	        	// Datos Visita
-	        	clienteVisitas.setId(rs.getInt("id"));
+	        	clienteVisitas.setIdVisita(rs.getInt("idVisita"));
 	        	clienteVisitas.setFechaVisita(rs.getDate("fechaVisita").toLocalDate());
 	        	clienteVisitas.setHoraVisita(rs.getTime("horaVisita").toLocalTime());
 	        	clienteVisitas.setIdCliente(rs.getString("idCliente"));
-	        	clienteVisitas.setIdServicio(rs.getInt("idServicio"));
+	        	clienteVisitas.setIdServicio(rs.getInt("idService"));
 	        	clienteVisitas.setIdUsuario(rs.getInt("idUsuario"));
 	            return clienteVisitas;
 	        }	 

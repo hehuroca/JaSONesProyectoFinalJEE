@@ -61,6 +61,7 @@ function valPatronesInputElements(frmElement) {
 	/* Aprendamos las Expresiones Regulares en - https://www.w3schools.com/js/js_regexp.asp */
 	//var patron = /w3schools/i;
     //var patron = /^w3schools$/i;  //^ y $ obligan a que la cadena sea exacta al patrón
+	var patronDni = /^[0-9XYZ][0-9]{7}[TRWAGMYFPDXBNJZSQVHLCKE]$/;
 	var patronNombres = /^([A-ZÁÉÍÓÚ]{1}[a-zñáéíóú]+[\s]?)+$/; // tomado de https://aprende-web.net/javascript/js13_3.php
 	var patronUsuarios = /^(?=\w*\d)(?=\w*[a-z])\S{6,10}$/;
 	//var patronEmail = /^[\w]+@{1}[\w]+\.+[a-z]{2,3}$/;
@@ -90,7 +91,7 @@ function valPatronesInputElements(frmElement) {
 	switch (frmElementId)
 	 {
 	   	// Los dos siguientes CASES validan los input del Formulario Login
-	   	case "inputUSR":
+	 case "inputUSR":
 		   if (!patronUsuarios.test(textoEscrito)){
 		   	   document.getElementById("inputUSR").className = "form-control btn-warning"
 		   	   infoNomPartStyleChange ("expregUSR" , "display: inline");
@@ -112,7 +113,17 @@ function valPatronesInputElements(frmElement) {
 		   	   infoNomPartStyleChange ("expregPWD" , "display: none");   
 		   }
 		   break;
-		// Los dos siguientes CASES validan los input del Formulario de Reservas
+		// Los dos siguientes CASES validan los input de un formulario con datos
+		// tipo DNI, nombre, primerApellido, etc
+	   	case "inputDni":
+			   if (!patronDni.test(textoEscrito)){
+			   	   infoNomPartStyleChange("dniWrong", "display: inline");
+			   	   patronTextoOK = false;
+			   }
+			   else {
+				   infoNomPartStyleChange("dniWrong", "display: none");
+			   }
+			   break;		   
 	   	case "inputName":
 			   if (!patronNombres.test(textoEscrito)){
 			   	   infoNomPartStyleChange("nameWrong", "display: inline");
@@ -172,6 +183,7 @@ function validateForm(frmName) {
     	 {
     	   	case "inputUSR":
     	   	case "inputPWD":
+    	   	case "inputDni":
     	   	case "inputName":
     	   	case "inputFirstLastName":
     	   	case "inputSecondLastName":

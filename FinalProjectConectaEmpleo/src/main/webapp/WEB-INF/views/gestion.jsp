@@ -18,12 +18,12 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 	<script src="<c:url value='/resources/project/js/comunes.js' />"></script>
-	<script src="<c:url value='/resources/project/js/index.js' />"></script>
+	<script src="<c:url value='/resources/project/js/gestion.js' />"></script>
 <title>JaSONes - Gestión Peluquería</title>
 </head>
 <body>
 	<div id="container" class="container fluid">
-		<div class="row" id="cabecera" >
+		<div class="row fixed-top" id="header" >
 			<div class="col-sm-9"></div>
 			<div class="col-sm-3">
 				<img src="<c:url value='/resources/project/images/jaSONes_fondoGris.png'/>"
@@ -31,31 +31,35 @@
 			</div>	
 		</div>
 		<div class="row" id="contenido">
-			<div class="col-sm-2" id="menu">
+			<div class="col col-md-2" id="menu">
 				<nav class="nav flex-md-column">
 					<ul class="nav flex-md-column" >
 						<li class="nav-item">
-							<a class="list-group-item-action" href= "#" target="contenedorIFRAME">Inicio</a>
+<!-- 							<a class="list-group-item-action" href= "#" target="iframeContents">Inicio</a> -->
+<!-- 						</li> -->
+<!-- 						<li class="nav-item"> -->
+<!-- 							<a class="list-group-item-action" href= "#" target="iframeContents">Usuarios</a> -->
+<!-- 						</li> -->
+						<li class="nav-item">
+							<a class="list-group-item-action" href= "clientes" target="iframeContents">Clientes</a>
 						</li>
 						<li class="nav-item">
-							<a class="list-group-item-action" href= "#" target="contenedorIFRAME">Usuarios</a>
+							<a class="list-group-item-action" href= "#" target="iframeContents">Visitas</a>
 						</li>
 						<li class="nav-item">
-							<a class="list-group-item-action" href= "#" target="contenedorIFRAME">Clientes</a>
-						</li>
-						<li class="nav-item">
-							<a class="list-group-item-action" href= "#" target="contenedorIFRAME">Visitas</a>
-						</li>
-						<li class="nav-item">
-							<a class="list-group-item-action" href= "#" target="contenedorIFRAME">Servicios</a>
+							<a class="list-group-item-action" href= "#" target="iframeContents">Servicios</a>
 						</li>
 					</ul>
 				</nav>
 			</div>
-			<div class="col-sm-10" id="vistaGeneral">
-				<iframe class="embed-responsive-item" class="embed-responsive-item" id="cliente" name="clientes"
-					width="100%" height="100%" sandbox="allow-same-origin allow-scripts"></iframe>
+			<div class="col col-md-10 embed-responsive-16by9" id="vistaGeneral">
+				<iframe class="embed-responsive-item" class="embed-responsive-item" id="iframeContents" name="iframeContents" 
+						width="100%" height="100%" sandbox="allow-same-origin allow-scripts"></iframe>
 			</div>
+		</div>
+		<div class="row fixed-bottom" id="footer" >
+			<div id="leftFooter" class="col-sm-6">JaSONes Asesores SL</div>
+			<div id="rightFooter" class="col-sm-6"><a href="http://www.jasonesasesores.com">http://www.jasonesasesores.com</a></div>	
 		</div>
 	</div>
 </body>

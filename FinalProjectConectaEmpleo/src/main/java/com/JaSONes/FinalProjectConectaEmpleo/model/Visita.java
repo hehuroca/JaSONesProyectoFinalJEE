@@ -7,21 +7,21 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
 
 public class Visita extends Servicio{
-	private int id;
+	private int idVisita;
 	@DateTimeFormat(iso=ISO.DATE, pattern= "yyyy/MM/dd")
 	private LocalDate fechaVisita;
 	@DateTimeFormat(iso=ISO.TIME, pattern= "HH:mm:ss")
 	private LocalTime horaVisita;
 	private String idCliente;
-	private int idServicio;
+	private int idService;
 	private int idUsuario;
 	
-	public int getId() {
-		return id;
+	public int getIdVisita() {
+		return idVisita;
 	}
 	
-	public void setId(int id) {
-		this.id = id;
+	public void setIdVisita(int idVisita) {
+		this.idVisita = idVisita;
 	}
 	
 	public LocalDate getFechaVisita() {
@@ -49,11 +49,11 @@ public class Visita extends Servicio{
 	}
 	
 	public int getIdServicio() {
-		return idServicio;
+		return idService;
 	}
 	
 	public void setIdServicio(int idServicio) {
-		this.idServicio = idServicio;
+		this.idService = idServicio;
 	}
 	
 	public int getIdUsuario() {

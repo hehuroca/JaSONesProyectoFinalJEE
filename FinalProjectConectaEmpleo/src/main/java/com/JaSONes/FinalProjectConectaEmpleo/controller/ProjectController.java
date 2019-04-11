@@ -2,6 +2,7 @@ package com.JaSONes.FinalProjectConectaEmpleo.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.time.LocalDate;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -22,11 +23,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.JaSONes.FinalProjectConectaEmpleo.model.Cliente;
+import com.JaSONes.FinalProjectConectaEmpleo.model.LocalDateDeserializer;
+import com.JaSONes.FinalProjectConectaEmpleo.model.LocalDateSerializer;
 import com.JaSONes.FinalProjectConectaEmpleo.model.Usuario;
 import com.JaSONes.FinalProjectConectaEmpleo.service.ClienteService;
 import com.JaSONes.FinalProjectConectaEmpleo.service.ServicioService;
 import com.JaSONes.FinalProjectConectaEmpleo.service.UsuarioService;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 @Controller
 public class ProjectController {
@@ -51,6 +56,56 @@ public class ProjectController {
 	public String gestionPage() {
 		return "gestion";
 	}
+	
+	@RequestMapping(value = "/clientes")
+	public ModelAndView clientesPage(ModelAndView model) {
+		List<Cliente> listaClientes;
+		listaClientes = this.clienteService.getClientes();
+		model.addObject("listaClientes", listaClientes);
+		model.setViewName("clientes");
+		return model;
+	}
+	
+//	@RequestMapping(value = "/editandoCliente")
+//	public ModelAndView editContact(HttpServletRequest request) {
+//	    String dni = request.getParameter("dni");
+//	    Cliente cliente = this.clienteService.getCliente(dni);
+//	    ModelAndView model = new ModelAndView("clientes");
+//	    model.addObject("clienteEd", cliente);
+//	    return model;
+//	}
+//	
+	
+	@RequestMapping(value="/editandoCliente", method = RequestMethod.POST)
+    public void pasajerosVueloList (HttpServletRequest request,
+    		HttpServletResponse response) throws ServletException, IOException {
+    	
+		// Preparamos el contenido de la tabla de pasajeros para el vuelo seleccionado
+		// String pasajerosVuelo = "";
+    	Cliente cliente = null;
+    	    	
+		String dni = request.getParameter("dni");
+		cliente = this.clienteService.getCliente(dni);
+		
+		response.setContentType("application/json;charset=UTF-8");
+		
+		GsonBuilder gsonBuilder = new GsonBuilder();
+		
+		// Lo que se recibe en formato de JSON hay que deserializarlo
+		// (Convertir a un objeto de java)
+		gsonBuilder.registerTypeAdapter(LocalDate.class, new LocalDateSerializer());
+        gsonBuilder.registerTypeAdapter(LocalDate.class, new LocalDateDeserializer());
+//	        gsonBuilder.registerTypeAdapter(LocalDateTime.class, new LocalDateTimeSerializer());
+//	        gsonBuilder.registerTypeAdapter(LocalDateTime.class, new LocalDateTimeDeserializer());
+        Gson gson = gsonBuilder.setPrettyPrinting().create();
+        
+		PrintWriter out;
+		out = response.getWriter();
+		out.print(gson.toJson(cliente));
+		
+		
+    }
+	
 	
 	@RequestMapping(value="/userLogged", method = RequestMethod.POST)
 	public void userLogged(HttpServletRequest request, 

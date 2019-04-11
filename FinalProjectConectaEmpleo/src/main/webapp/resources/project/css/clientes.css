@@ -1,42 +1,118 @@
-@charset "ISO-8859-1";
+@charset "UTF-8";
 
+body {
+  padding-top: 60px;
+  padding-right: 0px;
+  padding-left: 0px;
+  background: #f8f2fd;
+}
 
-
+/* Make the image fully responsive */
+.carousel-inner img {
+     width: 100%;
+     height: 300px
+ }
+ 
 #mainContainer {
-    margin-top: 10px;
+    margin-left: 0px;
     padding-left: 0px;
-    padding-right: 0px;
-    display: none
-}   
+    padding-right: 0px
+}    
+
+#formDatosCliente {
+    padding-left: 4px;
+    padding-bottom: 8px
+}
+
+#vuelosProgramados {
+	margin-top: 3px;
+    margin-bottom: 3px;
+    margin-left: 0px;
+    margin-right: 0px;
+    display: flex;
+    clear: both;
+    width: 100%
+}
+
+#tituloPrincipal, #clientsListTitle { 
+	padding-left: 0px;
+	padding-right: 0px;
+	clear: both;
+	width: 100%;
+/*	background-color:lightblue;
+	color: green;*/
+	display: flex;
+   	justify-content: center;
+   	align-items: center
+}
 
 
 #listadoClientes {
-	width: 100%;
-	clear: both
+	padding-left: 0px;
+	padding-right: 0px;
+	width: 100%
 }
 
-#lblInputDni, #lblInputNombre, #lblInputPrimerApellido, #lblInputSegundoApellido {
+#btnRegValidation {
+	padding-left: 5px;
+	padding-right: 0px;
+	margin-top: 30px;
+	width: 100%
+}
+
+#lblInputDni, #lblInputName, #lblInputFirstLastName, #lblInputFechaNac,
+#lblInputSecondLastName, #lblInputEmail, #lblInputTelefonos, #lblInputSex {
 	border-top: 1px;
 	border-left: 1px;
 	padding-top: 6px;
-	padding-left: 12pxlb
+	padding-left: 12px
 }
 
-#dniErroneo, #nombreErroneo, #primerApellidoErroneo, #segundoApellidoErroneo,
-#telefonoErroneo, #emailErroneo {
+#nameWrong, #firstLastNameWrong, #secondLastNameWrong, #emailWrong,
+#telefonosWrong, #dniWrong {
 	display: none;
 	color: red;
 	font: 11px arial, sans-serif;
 	background-color: #f3f8d3
 }
 
-#expreDni, #expreNombre, #exprePrimerApellido, #expreSegundoApellido, 
-	#expregTelefonos, #expregEmail {
+#expregName, #expregFirstLastName, #expregSecondLastName, #expregEmail,
+#expregTelefonos, #expregDni {
 	font: 11px arial, sans-serif;
-	margin-bottom: 3px	
-	}
-	
-#botonRegistrarCliente {
-/* 	float: right; */
-	background: #8fb627
+	margin-bottom: 3px
+}
+
+#grpdatosIdentidad0 {
+	padding-top: 8px;
+	padding-bottom: 8px;
+	width: 100%;
+	background: #f8f2fd
+}
+
+#grpdatosIdentidad1 {
+	padding-bottom: 8px;
+	width: 100%;
+	background: #f8f2fd
+}
+
+#grpDni, #grpName, #grpFirstLastName, #grpSecondLastName {
+	float: left;
+	width: 100%
+}
+
+#grpPhones, #grpEmails, #grpBirthDay, #grpSex {
+	float: left;
+	width: 100%
+}
+
+/* Los campos del formulario */
+
+#dni, #name, #firstlastName, #secondlastName, #emails, 
+#phones, #birthDay, #sex {
+	margin-bottom: 3px;
+	background-color: #ffe6cc
+}
+
+#grpAddCustomer {
+	display: none
 }

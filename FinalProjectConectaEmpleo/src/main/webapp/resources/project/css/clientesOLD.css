@@ -1,0 +1,45 @@
+@charset "UTF-8";
+
+#mainContainer {
+    margin-top: 10px;
+    padding-left: 0px;
+    padding-right: 0px;
+    display: inline
+}   
+
+
+#listadoClientes {
+	width: 100%;
+	clear: both
+}
+
+#lblInputDni, #lblInputNombre, #lblInputPrimerApellido, #lblInputSegundoApellido {
+	border-top: 1px;
+	border-left: 1px;
+	padding-top: 6px;
+	padding-left: 12pxlb
+}
+
+#dniWrong, #nameWrong, #primerApellidoErroneo, #segundoApellidoErroneo,
+#telefonoErroneo, #emailErroneo {
+	display: none;
+	color: red;
+	font: 11px arial, sans-serif;
+	background-color: #f3f8d3
+}
+
+#expreDni, #expreNombre, #exprePrimerApellido, #expreSegundoApellido, 
+	#expregTelefonos, #expregEmail {
+	font: 11px arial, sans-serif;
+	margin-bottom: 3px	
+	}
+	
+#botonRegistrarCliente {
+/* 	float: right; */
+	background: #8fb627
+}
+
+#addCustomer {
+	display: inline-flex
+	
+}
