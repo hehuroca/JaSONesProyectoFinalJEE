@@ -8,7 +8,7 @@ import com.JaSONes.FinalProjectConectaEmpleo.model.Cliente;
 public interface ClienteDao {
 	
 	public int add(Cliente cliente);
-	public void edit(Cliente cliente);
+	public int edit(Cliente cliente);
 	public void delete(String dni);
 	public List<Cliente> getClientes();
 	public Cliente getCliente(String dni);

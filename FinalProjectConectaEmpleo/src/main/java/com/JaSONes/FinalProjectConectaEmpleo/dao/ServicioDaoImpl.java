@@ -34,9 +34,9 @@ public class ServicioDaoImpl implements ServicioDao{
 	}
 
 	@Override
-	public void edit(Servicio servicio) {
+	public int edit(Servicio servicio) {
 		// TODO Auto-generated method stub
-		
+		return 0;
 	}
 
 	@Override

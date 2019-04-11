@@ -57,19 +57,20 @@ public class ClienteDaoImpl implements ClienteDao {
 	}
 
 	@Override
-	public void edit(Cliente cliente) {
+	public int edit(Cliente cliente) {
         // update
         String sql = "UPDATE `basedatospeluqueria`.`cliente` " + 
         		"SET `nombre` = ?, `primerApellido` = ?, " + 
         		"`segundoApellido` = ?, `fechaNacimiento` = ?, " + 
         		"`sexo` = ? WHERE (`dni` = ?)";
-        jdbcTemplate.update(sql, 
+        int total = jdbcTemplate.update(sql, 
         		cliente.getNombre(),
         		cliente.getPrimerApellido(),
         		cliente.getSegundoApellido(),
         		cliente.getFechaNacimiento(),
         		cliente.getSexo().toString(),
         		cliente.getDni());
+        return total;
 	}
 
 	@Override

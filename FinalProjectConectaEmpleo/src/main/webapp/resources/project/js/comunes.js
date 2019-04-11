@@ -195,9 +195,38 @@ function validateForm(frmName) {
     	   			//return formularioOK;
     	   		}
     	   		break;
+    	   	case "inputSex1":
+    	   	case "inputSex2":
+    	   		// Verifcamos si se ha marcado la casilla sexo
+    	   		var sexOK = sexVerificationOK();
+    	   		if (!sexOK) {
+    	   			formularioOK = false;
+    	   			//return formularioOK;
+    	   		}
+    	   		break;
     	 } 	
     	// Devolvemos True o False al final de la función
 
     }
 	return formularioOK;
+};
+
+function sexVerificationOK() {
+	// Verificamos si se ha escogido sitio para reservar
+	var sexVerification = false;
+	var OptionsSiteSelected = document.getElementsByName("sex");
+	var sexOptionChecked = "";
+	for (i=0; i<OptionsSiteSelected.length; i++) {
+		if (OptionsSiteSelected[i].checked) {
+			sexOptionChecked = OptionsSiteSelected[i].value;
+		}
+	}
+	if (sexOptionChecked === "") {
+		sexVerification = false;
+		document.getElementById("divlblSex").style = "background-color:red";
+	} else {
+		sexVerification = true;
+		document.getElementById("divlblSex").style = "background-color:#d8d8eb";
+	}
+	return sexVerification;
 };

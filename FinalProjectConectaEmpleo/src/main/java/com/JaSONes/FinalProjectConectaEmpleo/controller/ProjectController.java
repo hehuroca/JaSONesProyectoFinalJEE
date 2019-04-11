@@ -66,15 +66,36 @@ public class ProjectController {
 		return model;
 	}
 	
-//	@RequestMapping(value = "/editandoCliente")
-//	public ModelAndView editContact(HttpServletRequest request) {
-//	    String dni = request.getParameter("dni");
-//	    Cliente cliente = this.clienteService.getCliente(dni);
-//	    ModelAndView model = new ModelAndView("clientes");
-//	    model.addObject("clienteEd", cliente);
-//	    return model;
-//	}
-//	
+	@RequestMapping(value="/updateCliente", method = RequestMethod.POST)
+	public void updateCliente(HttpServletRequest request, 
+				HttpServletResponse response) throws ServletException, IOException {
+
+		// El formulario no me devuelve los valores esperados :-((
+		// @ModelAttribute("altaPasajero") Pasajero pasajeroToAdd
+		
+		response.setContentType("application/json;charset=UTF-8");
+
+        Gson gson = new Gson();
+        String clienteUpdateJSON = request.getParameter("clienteUpdate");
+		
+        Cliente clienteToUpdate = gson
+				.fromJson(clienteUpdateJSON, Cliente.class);		
+
+		// Insertar el pasajero en la tabla de pasajeros
+		// de paso descomponemos los campos telefonos y correos
+		// y se añaden a sus correspondientes tablas usando
+		// una transaccion
+		
+		PrintWriter out;
+		out = response.getWriter();
+	
+		int total = this.clienteService.edit(clienteToUpdate);
+		
+		if (total > 0) {
+			out.print("Cliente actualizado correctamente");
+		}
+			
+	}
 	
 	@RequestMapping(value="/editandoCliente", method = RequestMethod.POST)
     public void pasajerosVueloList (HttpServletRequest request,

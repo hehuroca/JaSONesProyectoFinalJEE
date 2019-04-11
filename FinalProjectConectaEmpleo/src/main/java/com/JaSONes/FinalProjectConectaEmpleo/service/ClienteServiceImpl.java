@@ -23,8 +23,8 @@ public class ClienteServiceImpl implements ClienteService{
 	}
 
 	@Override
-	public void edit(Cliente cliente) {
-		this.clienteDao.edit(cliente);
+	public int edit(Cliente cliente) {
+		return this.clienteDao.edit(cliente);
 	}
 
 	@Override

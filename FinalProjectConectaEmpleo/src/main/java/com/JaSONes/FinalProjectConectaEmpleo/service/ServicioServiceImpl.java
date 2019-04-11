@@ -23,8 +23,8 @@ public class ServicioServiceImpl implements ServicioService {
 	}
 
 	@Override
-	public void edit(Servicio servicio) {
-		this.servicioDao.edit(servicio);
+	public int edit(Servicio servicio) {
+		return this.servicioDao.edit(servicio);
 	}
 
 	@Override

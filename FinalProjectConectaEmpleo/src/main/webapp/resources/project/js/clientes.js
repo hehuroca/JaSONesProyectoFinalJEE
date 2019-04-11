@@ -71,36 +71,47 @@ function formDatosClienteSUBMITEvent () {
 	event.stopPropagation();
 	
 	if (validateForm("formDatosCliente")){	
-		var dni = document.getElementById("dni").value;
-	
+		
+		var objCliente = new Object();
+		objCliente.dni = document.getElementById("dni").value;
+		var OptionsSiteSelected = document.getElementsByName("sex");
+		objCliente.sexo = "";
+		var sexOptionChecked = "";
+		for (i=0; i<OptionsSiteSelected.length; i++) {
+			if (OptionsSiteSelected[i].checked) {
+				sexOptionChecked = OptionsSiteSelected[i].value;
+				objCliente.sexo = sexOptionChecked;
+			}
+		}
+		objCliente.nombre = document.getElementById("inputName").value;
+		objCliente.primerApellido = document.getElementById("inputFirstLastName").value;
+		objCliente.segundoApellido = document.getElementById("inputSecondLastName").value;
+		objCliente.telefono = document.getElementById("inputTelefonos").value;
+		objCliente.mail = document.getElementById("inputEmail").value;
+		objCliente.mail = document.getElementById("inputBirthDay").value;
+		
+		var stringJSONCliente = JSON.stringify(objCliente);
+		
 		var xhttp = new XMLHttpRequest();
+	
 		xhttp.onreadystatechange = function() {
 			if (this.readyState === 4 && this.status === 200) {
 				var respuestaRecibida = this.responseText;
-				//var objRespuestaRecibida = JSON.parse(respuestaRecibida);
-//				// Datos del vuelo
-//				document.getElementById("txtjs").innerHTML = datosVueloTexto();
-//				infoNomPartStyleChange ("tituloDatosVuelo" , "display: flex");
-//				// Lista de pasajeros del vuelo
-//				document.getElementById("listaPasajeros").innerHTML = 
-//					listaPasajerosVuelo(objRespuestaRecibida);
+				if (respuestaRecibida === "Cliente actualizado correctamente") {
+					// Limpiamos los controles
+					btnCancelValidationCLICKEvent();
+				}
 			}
 		};
-	xhttp.open("POST", "editandoCliente", true);
-	xhttp.setRequestHeader("Content-type",
-					   "application/x-www-form-urlencoded");
-	xhttp.send("dni="+dni);
-
+		xhttp.open("POST", "updateCliente", true);
+		xhttp.setRequestHeader("Content-type",
+							   "application/x-www-form-urlencoded");
+		xhttp.send("clienteUpdate="+stringJSONCliente);
 	}	
 		
 };
 
-function btnNewCustomerCLICKEvent () {
-	
-	
-};
-
-function btnCancelValidationCLICKEvent () {
+function InputsControlsFormClear() {
 	var x = document.getElementsByTagName("input");
     for ( var counter = 0; counter < x.length; counter++)
     {
@@ -108,6 +119,15 @@ function btnCancelValidationCLICKEvent () {
     	   x[counter].value = ""
        };
     }
+}
+
+function btnNewCustomerCLICKEvent () {
+	
+	
+};
+
+function btnCancelValidationCLICKEvent () {
+	InputsControlsFormClear();
     document.getElementById("inputDni").disabled = false;
     infoNomPartStyleChange ("grpListadoClientes", "display: flex");
 	infoNomPartStyleChange ("grpAddCustomer", "display: none");
